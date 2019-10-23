@@ -201,6 +201,6 @@ struct memory_block *merge_buddies(
     struct memory_block *block2
 ) {
     block1->size *= 2;
-//    free(block2);
+    free(block2);
     return block1;
 }

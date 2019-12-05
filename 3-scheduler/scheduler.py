@@ -48,7 +48,7 @@ class Scheduler:
     def pick_task(self):
         for queue_number, queue in enumerate(self.queues):
             if len(queue):
-                return queue.pop()
+                return queue.pop(0)
 
     def process_beat(self, beat_tasks):
         task = self.resource.make_beat()
@@ -63,16 +63,16 @@ class Scheduler:
         # Assign beat tasks to queues according to Corbato algorithm
         #
         for task in beat_tasks:
-            # If there is more prior task - interrupt execution
-            #
-            if self.resource.is_busy() and task.priority > self.resource.task.priority:
-                interrupted_task = self.resource.interrupt(task)
-                # put interrupted_task back to queue
-                #
-                self.assign_task_to_queue(interrupted_task)
-            # put task to its queue
-            #
-            else:
+#             # If there is more prior task - interrupt execution
+#             #
+#             if self.resource.is_busy() and task.priority > self.resource.task.priority:
+#                 interrupted_task = self.resource.interrupt(task)
+#                 # put interrupted_task back to queue
+#                 #
+#                 self.assign_task_to_queue(interrupted_task)
+#             # put task to its queue
+#             #
+#             else:
                 self.assign_task_to_queue(task)
 
         # if resource is free, take task from the most prior queue and execute

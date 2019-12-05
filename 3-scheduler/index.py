@@ -2,7 +2,7 @@ from statistics import mean
 from scheduler import *
 from graph import *
 
-ITERATIONS_COUNT = 40
+ITERATIONS_COUNT = 100
 
 research_types = {
     '1': 'Mean awaiting time versus density',
